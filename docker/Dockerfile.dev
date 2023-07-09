@@ -1,0 +1,14 @@
+FROM node:18 as dev
+
+WORKDIR /frontend
+
+COPY package.json package-lock.json ./
+
+RUN npm ci
+
+COPY . .
+
+# Dev server uses 3000
+EXPOSE 3000
+
+CMD ["npm", "start"]

@@ -1,0 +1,27 @@
+name: integration
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+      -
+        name: Install dependencies
+        run: npm ci
+      -
+        name: Build app
+        run: npm run build --if-present
+      -
+        name: Run tests
+        run: npm test

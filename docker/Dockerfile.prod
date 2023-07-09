@@ -1,0 +1,27 @@
+# BUILD STAGE
+FROM node:18 as build-stage
+
+WORKDIR /frontend
+
+COPY package.json package-lock.json ./
+
+RUN npm ci
+
+COPY . .
+
+RUN npm run build
+
+FROM build-stage as test-stage
+
+RUN npm test
+
+FROM nginx:1.21-alpine as prod-stage
+
+# TODO: What about nginx config
+
+COPY --from=build-stage /frontend/build /usr/share/nginx/html
+
+EXPOSE 80
+
+# Start nginx
+CMD [ "nginx", "-g", "daemon off;" ]
