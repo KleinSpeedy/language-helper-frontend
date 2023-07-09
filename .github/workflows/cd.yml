@@ -27,4 +27,4 @@ jobs:
           context: .
           file: ./docker/Dockerfile.prod
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/langhelp-frontend:latest
