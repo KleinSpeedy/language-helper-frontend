@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 
+// TODO: Should this be called app? Base Container? 
 function App() {
   return (
     <>
