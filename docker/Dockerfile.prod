@@ -17,8 +17,6 @@ RUN npm test
 
 FROM nginx:1.21-alpine as prod-stage
 
-# TODO: What about nginx config
-
 COPY --from=build-stage /frontend/build /usr/share/nginx/html
 
 EXPOSE 80
